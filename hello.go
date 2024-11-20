@@ -7,14 +7,17 @@ import (
 
 func main() {
 
-	exibeIntroducao()
-	exibeMenu()
+	//exibeIntroducao()
+	//exibeMenu()
+	nome, idade := devolveNomeEIdade()
+	fmt.Println(nome)
+	fmt.Println(idade)
 
 	comando := leComando()
 
 	switch comando {
 	case 1:
-		fmt.Println("Monitorando...")
+		iniciarMonitoramento()
 	case 2:
 		fmt.Println("Exibindo logs...")
 	case 0:
@@ -26,6 +29,11 @@ func main() {
 	}
 }
 
+func devolveNomeEIdade() (string, int) {
+	nome := "Rodrigo"
+	idade := 24
+	return nome, idade
+}
 func exibeIntroducao() {
 	nome := "Rodrigo"
 	versao := 1.1
@@ -45,4 +53,10 @@ func leComando() int {
 	fmt.Println("O comando escolhido foi", comandoLido)
 
 	return comandoLido
+}
+
+func iniciarMonitoramento() {
+	fmt.Println("Monitorando...")
+	//site := "https://www.alura.com.br"
+	//response, err := http.Get(site)
 }
