@@ -2,13 +2,20 @@ package main
 
 import (
 	"fmt"
-	"reflect"
 )
 
 func main() {
-	nome := "Rodrigo" // Tipo da variavel inferido // O var pode ser substituido por :=
-	versao := 1.1     // Tipo da variavel inferido, o go cria como float64, // O var pode ser substituido por :=
+	nome := "Rodrigo"
+	versao := 1.1
+	fmt.Println("Olá, sr.", nome)
 	fmt.Println("Este programa está na versão", versao)
-	fmt.Println("O tipo da variavel nome é ", reflect.TypeOf(nome))
-	fmt.Println("O tipo da variavel versao é ", reflect.TypeOf(versao))
+
+	fmt.Println("1 - Iniciar Monitoramento")
+	fmt.Println("2 - Exibir Logs")
+	fmt.Println("0 - Sair do programa")
+
+	var comando int
+	fmt.Scan(&comando)
+	fmt.Println("O endereco de memoria da variavel comando é", &comando)
+	fmt.Println("O comando escolhido foi", comando)
 }
