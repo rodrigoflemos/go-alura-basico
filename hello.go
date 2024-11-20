@@ -16,6 +16,6 @@ func main() {
 
 	var comando int
 	fmt.Scan(&comando)
-	fmt.Println("O endereco de memoria da variavel comando é", &comando)
+
 	fmt.Println("O comando escolhido foi", comando)
 }
