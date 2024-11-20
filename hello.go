@@ -2,38 +2,34 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 )
 
 func main() {
 
-	//exibeIntroducao()
-	//exibeMenu()
-	nome, idade := devolveNomeEIdade()
-	fmt.Println(nome)
-	fmt.Println(idade)
+	exibeIntroducao()
 
-	comando := leComando()
+	for { // semelhante a while(true), nao existe while em Golang
+		exibeMenu()
 
-	switch comando {
-	case 1:
-		iniciarMonitoramento()
-	case 2:
-		fmt.Println("Exibindo logs...")
-	case 0:
-		fmt.Println("Saindo do programa")
-		os.Exit(0)
-	default:
-		fmt.Println("Não conheço este comando")
-		os.Exit(-1)
+		comando := leComando()
+
+		switch comando {
+		case 1:
+			iniciarMonitoramento()
+		case 2:
+			fmt.Println("Exibindo logs...")
+		case 0:
+			fmt.Println("Saindo do programa")
+			os.Exit(0)
+		default:
+			fmt.Println("Não conheço este comando")
+			os.Exit(-1)
+		}
 	}
 }
 
-func devolveNomeEIdade() (string, int) {
-	nome := "Rodrigo"
-	idade := 24
-	return nome, idade
-}
 func exibeIntroducao() {
 	nome := "Rodrigo"
 	versao := 1.1
@@ -57,6 +53,12 @@ func leComando() int {
 
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
-	//site := "https://www.alura.com.br"
-	//response, err := http.Get(site)
+	site := "https://httpbin.org/status/200"
+	resp, _ := http.Get(site)
+
+	if resp.StatusCode == 200 {
+		fmt.Println("Site:", site, "foi carregado com sucesso!")
+	} else {
+		fmt.Println("Site:", site, "está com problemas. Status Code:", resp.StatusCode)
+	}
 }
