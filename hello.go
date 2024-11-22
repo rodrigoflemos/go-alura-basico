@@ -53,6 +53,15 @@ func leComando() int {
 
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
+
+	var sites [4]string
+
+	sites[0] = "https://httpbin.org/status/200"
+	sites[1] = "https://httpbin.org/status/204"
+	sites[2] = "https://httpbin.org/status/400"
+
+	fmt.Println(sites)
+
 	site := "https://httpbin.org/status/200"
 	resp, _ := http.Get(site)
 
