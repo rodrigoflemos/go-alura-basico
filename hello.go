@@ -4,14 +4,15 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"reflect"
 )
 
 func main() {
-
-	exibeIntroducao()
+	exibeNome()
+	//exibeIntroducao()
 
 	for { // semelhante a while(true), nao existe while em Golang
-		exibeMenu()
+		//exibeMenu()
 
 		comando := leComando()
 
@@ -70,4 +71,20 @@ func iniciarMonitoramento() {
 	} else {
 		fmt.Println("Site:", site, "está com problemas. Status Code:", resp.StatusCode)
 	}
+}
+
+// Criacao de Slice;. Igual a array mas sem passar o tamanho do array
+func exibeNome() {
+	nomes := []string{"Rodrigo", "Lemos", "Rodrigo", "Lemos"}
+	fmt.Println(nomes)
+	fmt.Println(reflect.TypeOf(nomes))
+	fmt.Println("O meu slice tem", len(nomes), "itens")
+	fmt.Println("O meu slice tem capacidade para ", cap(nomes), "itens")
+
+	nomes = append(nomes, "Ferreira")
+	fmt.Println(nomes)
+	fmt.Println(reflect.TypeOf(nomes))
+	fmt.Println("O meu slice tem", len(nomes), "itens")
+	fmt.Println("O meu slice tem capacidade para ", cap(nomes), "itens")
+
 }
