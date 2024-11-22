@@ -1,0 +1,5 @@
+https://httpbin.org/status/200
+https://httpbin.org/status/204
+https://httpbin.org/status/400
+http://terra.com.br
+http://uol.com.br
