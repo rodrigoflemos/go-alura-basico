@@ -4,15 +4,14 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"reflect"
 )
 
 func main() {
-	exibeNome()
-	//exibeIntroducao()
 
-	for { // semelhante a while(true), nao existe while em Golang
-		//exibeMenu()
+	exibeIntroducao()
+
+	for {
+		exibeMenu()
 
 		comando := leComando()
 
@@ -55,13 +54,17 @@ func leComando() int {
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
 
-	var sites [4]string
+	sites := []string{"https://httpbin.org/status/200", "https://httpbin.org/status/204", "https://httpbin.org/status/400"}
 
-	sites[0] = "https://httpbin.org/status/200"
-	sites[1] = "https://httpbin.org/status/204"
-	sites[2] = "https://httpbin.org/status/400"
+	/*for tradicional
+	for i := 0; i < len(sites); i++ {
+		fmt.Println(sites[i])
+	}*/
 
-	fmt.Println(sites)
+	//for go
+	for i, site := range sites {
+		fmt.Println("Estou passando na posicao", i, "com o site", site)
+	}
 
 	site := "https://httpbin.org/status/200"
 	resp, _ := http.Get(site)
@@ -71,20 +74,4 @@ func iniciarMonitoramento() {
 	} else {
 		fmt.Println("Site:", site, "está com problemas. Status Code:", resp.StatusCode)
 	}
-}
-
-// Criacao de Slice;. Igual a array mas sem passar o tamanho do array
-func exibeNome() {
-	nomes := []string{"Rodrigo", "Lemos", "Rodrigo", "Lemos"}
-	fmt.Println(nomes)
-	fmt.Println(reflect.TypeOf(nomes))
-	fmt.Println("O meu slice tem", len(nomes), "itens")
-	fmt.Println("O meu slice tem capacidade para ", cap(nomes), "itens")
-
-	nomes = append(nomes, "Ferreira")
-	fmt.Println(nomes)
-	fmt.Println(reflect.TypeOf(nomes))
-	fmt.Println("O meu slice tem", len(nomes), "itens")
-	fmt.Println("O meu slice tem capacidade para ", cap(nomes), "itens")
-
 }
